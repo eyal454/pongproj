@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnPlay = findViewById(R.id.btnPlay);
         btnScore = findViewById(R.id.btnScore);
         btnSet.setOnClickListener(this);
+        btnScore.setOnClickListener(this);
+        btnPlay.setOnClickListener(this);
 
 
 
@@ -35,8 +37,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if (btnSet == view)
         {
-            Intent intent = new Intent(this,SettingsActivity.class);
-            startActivity(intent);
+            Intent settings = new Intent(this,SettingsActivity.class);
+            startActivity(settings);
+        }
+
+        if (btnPlay == view)
+        {
+            Intent play = new Intent(this,ChooseActivity.class);
+            startActivity(play);
+        }
+
+        if (btnScore == view)
+        {
+            Intent score = new Intent(this,ScoreActivity.class);
+            startActivity(score);
         }
     }
 }
