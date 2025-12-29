@@ -3,6 +3,7 @@ package com.example.pongproj;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 
 public class Ball extends Sprite{
     private float r;    // radius size
@@ -36,9 +37,34 @@ public class Ball extends Sprite{
         canvas.drawCircle(x,y,r,p);
     }
 
-    public boolean isCollision(float x, float y) {
-        if(this.x > x && this.x<x+250 && this.y > y && this.y < y+250)
-            return true;
-        return  false;
+    public void checkCollisions(Ball ball, Paddle paddle, int screenWidth, int screenHeight) {
+
+        // left and right Wall Collisions
+        if (ball.x - ball.r < 0 || ball.x + ball.r > screenWidth) {
+            dx = -dx;
+        }
+
+        // top Wall Collision
+        if (ball.y - ball.r < 0) {
+            dy = -dy;
+        }
+
+        // paddle colision
+        if (RectF.intersects(paddle.rect, new RectF(
+                ball.x - ball.r,
+                ball.y - ball.r,
+                ball.x + ball.r,
+                ball.y + ball.r))) {
+
+            dy = -dy;
+            ball.y = paddle.rect.top - ball.r;
+
+
+        }
+
+        //  bottom Wall (Game Over)
+        if (ball.y - ball.r > screenHeight) {
+            resetBall();
+        }
     }
 }
