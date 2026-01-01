@@ -10,6 +10,7 @@ public class Ball extends Sprite{
     private Paint p;
     private float canvasWidth;
     private float canvasHeight;
+    private float VelX, VelY;
 
 
     public Ball(float x, float y, float r) {
@@ -64,7 +65,7 @@ public class Ball extends Sprite{
 
         //  bottom Wall (Game Over)
         if (ball.y - ball.r > screenHeight) {
-            resetBall();
+
         }
     }
 }
